@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.template import loader
 from django.http import HttpResponse
-from django.views.generic import View, TemplateView, ListView
+from django.views.generic import View, TemplateView, ListView, DetailView
 
 
 # Models
@@ -47,12 +47,25 @@ def list_pet_owners(request):
 
 
 class OwnersList(ListView):
+    """Render all Pet Owners."""
+
     # 1. Modelo que estamos manipulando
     # 2. Template con el que vamos renderizar
     # 3. El contexto que va a tener ese template
     model = PetOwner  # 1
     template_name = "vet/owners/list.html"  # 2
     context_object_name = "owners"  # 3
+
+
+class OwnerDetail(DetailView):
+    """Render a specific Pet Owner with their pk."""
+
+    # 1. Modelo
+    # 2. Template a renderizar
+    # 3. El contexto que va a tener ese template
+    model = PetOwner
+    template_name = "vet/owners/detail.html"
+    context_object_name = "owner"
 
 
 class Test(View):
