@@ -5,7 +5,7 @@ from django.views.generic import View, TemplateView, ListView, DetailView
 
 
 # Models
-from vet.models import PetOwner
+from vet.models import PetOwner, Pet
 
 
 # Create your views here.
@@ -30,20 +30,50 @@ def list_pet_owners(request):
 
 # CRUD
 
+
 # Ctrl + /
 # Cmd + /
-# class OwnersList(TemplateView):
-#     # Renderizame este template
-#     template_name = "vet/owners/list.html"
+class OwnersList(TemplateView):
+    # Renderizame este template
+    template_name = "vet/owners/list.html"
 
-#     # Que este template va a tener cierto 'contexto'
-#     def get_context_data(self, **kwargs):
-#         # Agarrar el contexto que ya creo 'TemplateView'
-#         context = super().get_context_data(**kwargs)
+    # Que este template va a tener cierto 'contexto'
+    def get_context_data(self, **kwargs):
+        # Agarrar el contexto que ya creo 'TemplateView'
+        context = super().get_context_data(**kwargs)
 
-#         # Le agregamos nuestro custom context
-#         context["owners"] = PetOwner.objects.all()
-#         return context
+        # Le agregamos nuestro custom context
+        context["owners"] = PetOwner.objects.all()
+        return context
+
+
+class PetsList(TemplateView):
+    # Renderizame este template
+    template_name = "vet/pets/list.html"
+
+    # Que este template va a tener cierto 'contexto'
+    def get_context_data(self, **kwargs):
+        # Agarrar el contexto que ya creo 'TemplateView'
+        context = super().get_context_data(**kwargs)
+
+        # Le agregamos nuestro custom context
+        context["pets"] = Pet.objects.all()
+        return context
+
+
+class PetsDetail(TemplateView):
+    # Renderizame este template
+    template_name = "vet/pets/detail.html"
+
+    # Que este template va a tener cierto 'contexto'
+    def get_context_data(self, **kwargs):
+        # Agarrar el contexto que ya creo 'TemplateView'
+
+        context = super().get_context_data(**kwargs)
+
+        # Le agregamos nuestro custom context
+        context["pet"] = Pet.objects.get(pk=kwargs["pk"])
+        return context
 
 
 class OwnersList(ListView):
@@ -65,7 +95,7 @@ class OwnerDetail(DetailView):
     # 3. El contexto que va a tener ese template
     model = PetOwner
     template_name = "vet/owners/detail.html"
-    context_object_name = "owner"
+    context_object_name = "owners"
 
 
 class Test(View):
