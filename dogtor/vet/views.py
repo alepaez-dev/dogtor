@@ -95,7 +95,7 @@ class OwnerDetail(DetailView):
     # 3. El contexto que va a tener ese template
     model = PetOwner
     template_name = "vet/owners/detail.html"
-    context_object_name = "owners"
+    context_object_name = "owner"
 
 
 class Test(View):

@@ -17,4 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-urlpatterns = [path("admin/", admin.site.urls), path("vet/", include("vet.urls"))]
+# si no tienes include -> reversed url se pone como 3er parametro ejemplo -> name="owners_list"
+# si SI tienes include -> reversed url se pone como 2do parametro DENTRO del include() -> include(("vet.urls", "vet"))
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("vet/", include(("vet.urls", "vet"))),
+]
