@@ -1,11 +1,22 @@
 from django.shortcuts import render
 from django.template import loader
 from django.http import HttpResponse
-from django.views.generic import View, TemplateView, ListView, DetailView
+from django.views.generic import (
+    View,
+    TemplateView,
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView,
+)
+from django.urls import reverse_lazy
 
 
 # Models
 from vet.models import PetOwner, Pet
+
+# Forms
+from .forms import OwnerForm
 
 
 # Create your views here.
@@ -96,6 +107,32 @@ class OwnerDetail(DetailView):
     model = PetOwner
     template_name = "vet/owners/detail.html"
     context_object_name = "owner"
+
+
+class OwnersCreate(CreateView):
+    """View used to create a PetOwner."""
+
+    # 1. Modelo
+    # 2. Template a renderizar
+    # 3. El formulario con el que se va a crear
+    # 4. La url a redireccionar si la request fue exitosa -> reversed_url
+
+    model = PetOwner  # 1
+    template_name = "vet/owners/create.html"  # 2
+    form_class = OwnerForm  # 3
+
+    # Url a donde se va a redireccionar si fue exitosa nuestra creacion.
+    success_url = reverse_lazy("vet:owners_list")  # 4
+
+
+class OwnersUpdate(UpdateView):
+    """View used to update a PetOwner."""
+
+    model = PetOwner
+    template_name = "vet/owners/update.html"
+    form_class = OwnerForm
+
+    success_url = reverse_lazy("vet:owners_list")
 
 
 class Test(View):
