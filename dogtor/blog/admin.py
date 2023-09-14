@@ -2,10 +2,15 @@ from django.contrib import admin
 
 
 # Models
+# from . import models -> importamos todos los modelos
+
+# Importamos especificamente los modelos que le decimos
 from .models import Post
 
-
 # Register your models here.
+
+
+@admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     """Post Admin model for admin."""
 
@@ -21,9 +26,3 @@ class BlogAdminArea(admin.AdminSite):
 
 # Instanciar nuestra clase para poderla utilizar
 blog_admin_site = BlogAdminArea(name="BlogAdmin")
-
-# Registramos modelo 'Post' en nuestro admin area
-blog_admin_site.register(Post, PostAdmin)
-
-# Registrarlo en el admin area general de admin.
-admin.site.register(Post, PostAdmin)
