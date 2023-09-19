@@ -3,6 +3,9 @@ from django.db import models
 
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 
+# Managers
+from .managers import ModUserManager
+
 # Create your models here.
 
 
@@ -20,11 +23,14 @@ class ModUser(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
 
+    # Manager del modelo
+    objects = ModUserManager()
+
     # Campo identificador del user
     USERNAME_FIELD = "email"
 
     # Campos requeridos para cuando usamos el comando createsuperuser
-    REQUIRED_FIELDS = ["user_name"]
+    REQUIRED_FIELDS = ["user_name", "first_name"]
 
     # Metodo string
     def __str__(self):

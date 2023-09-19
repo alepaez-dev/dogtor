@@ -38,6 +38,3 @@ class ModUserManager(BaseUserManager):
 
         # Creamos el usuario con la funcion recien creada de create_user
         return self.create_user(email, user_name, first_name, password, **other_fields)
-
-    # 2. create_superuser
-    # admin -> 123456 -> createsuperuser
