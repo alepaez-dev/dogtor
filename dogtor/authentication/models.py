@@ -34,4 +34,4 @@ class ModUser(AbstractBaseUser, PermissionsMixin):
 
     # Metodo string
     def __str__(self):
-        return f"{self.user_name} {self.email} "
+        return f"{self.user_name} {self.email}"
