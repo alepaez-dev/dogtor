@@ -119,7 +119,7 @@ USE_I18N = True
 USE_TZ = True
 
 # URL's de redireccion para login
-LOGIN_REDIRECT_URL = "vet/owners/"
+LOGIN_REDIRECT_URL = "/vet/owners/"
 LOGOUT_REDIRECT_URL = "/"
 
 # Static files (CSS, JavaScript, Images)
