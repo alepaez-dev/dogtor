@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # Custom apps
     "vet",
     "blog",
+    "authentication",
 ]
 
 MIDDLEWARE = [
