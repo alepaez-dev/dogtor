@@ -29,6 +29,7 @@ urlpatterns = [
     path("blogadmin/", blog_admin_site.urls),  # Panel de admin para blog nada mas
     path("vet/", include(("vet.urls", "vet"))),
     path("accounts/", include("django.contrib.auth.urls")),
+    path("api/", include(("api.urls", "api"))),
 ]
 
 # Customizar nuestro panel de administracion

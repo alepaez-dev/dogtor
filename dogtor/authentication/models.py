@@ -8,6 +8,9 @@ from .managers import ModUserManager
 
 # Create your models here.
 
+# Custom Users
+# Managers
+
 
 class ModUser(AbstractBaseUser, PermissionsMixin):
     """Custom Moderator User."""
