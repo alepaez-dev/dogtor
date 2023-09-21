@@ -17,10 +17,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+# Admin Panels
+from blog.admin import blog_admin_site
+
 # si no tienes include -> reversed url se pone como 3er parametro ejemplo -> name="owners_list"
 # si SI tienes include -> reversed url se pone como 2do parametro DENTRO del include() -> include(("vet.urls", "vet"))
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path("admin/", admin.site.urls),  # Por defecto al hacer un proyecto
+    path("blogadmin/", blog_admin_site.urls),  # Panel de admin para blog nada mas
     path("vet/", include(("vet.urls", "vet"))),
 ]
+
+# Customizar nuestro panel de administracion
+admin.site.index_title = "Dogtor"
+admin.site.site_header = "Dogtor Admin"
+admin.site.site_title = "Dogtor Admin Panel"
