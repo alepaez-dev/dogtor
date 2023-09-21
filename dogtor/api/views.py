@@ -2,12 +2,13 @@ from django.shortcuts import render
 from rest_framework import viewsets
 
 # Models
-from vet.models import PetOwner
+from vet.models import PetOwner, Pet
 
 # Serializers
 from .serializers import OwnersSerializers
 
 # Create your views here.
+from .serializers import OwnersSerializers, PetsSerializer
 
 
 # LIST -> GET - check
@@ -30,3 +31,10 @@ class OwnersViewSet(viewsets.ModelViewSet):
     # Obtener todos los owners -> PetOwners.objects.all()
     queryset = PetOwner.objects.all()
     serializer_class = OwnersSerializers
+
+
+class PetsViewSet(viewsets.ModelViewSet):
+    """ViewSet del modelo Pet."""
+
+    queryset = Pet.objects.all()
+    serializer_class = PetsSerializer
