@@ -37,3 +37,11 @@ class PetsSerializer(serializers.HyperlinkedModelSerializer):
             "created_at",
             "owner",  # foreign key
         ]
+
+
+class OwnersListSerializer(serializers.ModelSerializer):
+    """Serializer to list all Pet Owners."""
+
+    class Meta:
+        model = PetOwner
+        fields = ["first_name", "last_name"]
