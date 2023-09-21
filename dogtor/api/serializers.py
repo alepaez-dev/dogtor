@@ -11,6 +11,7 @@ class OwnersSerializers(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = PetOwner
         fields = [
+            "id",
             "first_name",
             "last_name",
             "email",
