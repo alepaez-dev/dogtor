@@ -8,7 +8,12 @@ from vet.models import PetOwner, Pet
 from .serializers import OwnersSerializers
 
 # Create your views here.
-from .serializers import OwnersSerializers, PetsSerializer, OwnersListSerializer
+from .serializers import (
+    OwnersSerializers,
+    PetsSerializer,
+    OwnersListSerializer,
+    OwnersDetailSerializer,
+)
 
 
 # LIST -> GET - check
@@ -45,3 +50,10 @@ class ListOwnersAPIView(generics.ListAPIView):
 
     queryset = PetOwner.objects.all().order_by("created_at")
     serializer_class = OwnersListSerializer
+
+
+class RetrieveOwnersAPIView(generics.RetrieveAPIView):
+    """Detail Pet Owner Api View."""
+
+    queryset = PetOwner.objects.all()
+    serializer_class = OwnersDetailSerializer

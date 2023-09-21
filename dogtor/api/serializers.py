@@ -45,3 +45,11 @@ class OwnersListSerializer(serializers.ModelSerializer):
     class Meta:
         model = PetOwner
         fields = ["first_name", "last_name"]
+
+
+class OwnersDetailSerializer(serializers.ModelSerializer):
+    """Serializer for the detail of a Pet Owner."""
+
+    class Meta:
+        model = PetOwner
+        fields = "__all__"

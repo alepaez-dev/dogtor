@@ -2,7 +2,7 @@ from django.urls import path, include
 from rest_framework import routers
 
 # Views
-from .views import ListOwnersAPIView
+from .views import ListOwnersAPIView, RetrieveOwnersAPIView
 
 # Router
 # router = routers.DefaultRouter()
@@ -16,5 +16,6 @@ from .views import ListOwnersAPIView
 # owners/id -> DELETE
 urlpatterns = [
     # path("", include(router.urls))
-    path("owners/", ListOwnersAPIView.as_view(), name="owners_list")
+    path("owners/", ListOwnersAPIView.as_view(), name="owners_list"),
+    path("owners/<int:pk>/", RetrieveOwnersAPIView.as_view(), name="owners_detail"),
 ]
