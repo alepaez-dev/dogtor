@@ -23,10 +23,12 @@ from blog.admin import blog_admin_site
 # si no tienes include -> reversed url se pone como 3er parametro ejemplo -> name="owners_list"
 # si SI tienes include -> reversed url se pone como 2do parametro DENTRO del include() -> include(("vet.urls", "vet"))
 
+# accounts/login
 urlpatterns = [
     path("admin/", admin.site.urls),  # Por defecto al hacer un proyecto
     path("blogadmin/", blog_admin_site.urls),  # Panel de admin para blog nada mas
     path("vet/", include(("vet.urls", "vet"))),
+    path("accounts/", include("django.contrib.auth.urls")),
 ]
 
 # Customizar nuestro panel de administracion

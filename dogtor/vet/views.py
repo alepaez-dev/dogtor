@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.template import loader
 from django.http import HttpResponse
-from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.views.generic import (
     View,
     TemplateView,
@@ -99,7 +99,7 @@ class OwnersList(ListView):
     context_object_name = "owners"  # 3
 
 
-class OwnerDetail(DetailView):
+class OwnerDetail(LoginRequiredMixin, DetailView):
     """Render a specific Pet Owner with their pk."""
 
     # 1. Modelo
@@ -132,7 +132,10 @@ class OwnersUpdate(PermissionRequiredMixin, UpdateView):
     # Permiso que necesita pa entrar
     # app.action_model
     permission_required = "vet.change_petowner"
-    raise_exception = True
+
+    raise_exception = False
+    login_url = "/admin/login"  # En caso que no tengamos iniciado sesion
+    redirect_field_name = "next"
 
     model = PetOwner
     template_name = "vet/owners/update.html"

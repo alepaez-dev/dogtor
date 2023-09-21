@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # Custom apps
     "vet",
     "blog",
+    "authentication",
 ]
 
 MIDDLEWARE = [
@@ -118,6 +119,12 @@ USE_I18N = True
 
 USE_TZ = True
 
+# URL's de redireccion para login
+LOGIN_REDIRECT_URL = "/vet/owners/"
+LOGOUT_REDIRECT_URL = "/"
+
+# AUTH USER que vamos a utilizar
+AUTH_USER_MODEL = "authentication.ModUser"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
